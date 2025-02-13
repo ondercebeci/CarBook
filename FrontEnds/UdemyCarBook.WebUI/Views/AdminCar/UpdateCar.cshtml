@@ -1,7 +1,7 @@
-﻿@model CreateCarDto
+﻿@model UpdateCarDto
 @{
-	ViewData["Title"] = "CreateCar";
-	Layout = "~/Views/AdminLayout/Index.cshtml";
+    ViewData["Title"] = "UpdateCar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
 }
 
 <div class="page-content">
@@ -9,10 +9,11 @@
 		<div class="card">
 			<div class="card-body">
 
-				<h4 class="card-title">Yeni Araç Girişi</h4>
-				<p class="card-subtitle mb-4">Araç ile ilgili bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak işlemi tamamlayabilirsiniz.</p>
+				<h4 class="card-title"> Araç Güncelleme Sayfası</h4>
+				<p class="card-subtitle mb-4">Araç ile ilgili bilgileri eksiksiz doldurmanız önemlidir. Veri girişlerinden sonra kaydet butonuna tıklayarak Güncelleme işlemi tamamlayabilirsiniz.</p>
 
 				<form method="post">
+					<input type="hidden" asp-for="CarID" />
 					<div class="form-group">
 						<label for="exampleInputBrand">Marka</label>
 						@*  @Html.DropDownListFor(x => x.BrandID, (List<SelectListItem>)ViewBag.brandvalues,new {@class="form-control" }) *@
@@ -61,4 +62,4 @@
 			</div>
 		</div>
 	</div>
-</div> 
+</div>
