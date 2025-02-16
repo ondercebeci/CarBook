@@ -13,6 +13,6 @@ namespace UdemyCarBook.Domain.Entities
         public string Description { get; set; }
         public DateTime Date { get; set; }
         public int BlogID { get; set; }
-        public Blog Blog { get; set; }
+        public Blog? Blog { get; set; }
     }
 }

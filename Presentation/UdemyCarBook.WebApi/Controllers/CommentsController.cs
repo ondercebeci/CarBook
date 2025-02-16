@@ -7,11 +7,11 @@ namespace UdemyCarBook.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ComementsController : ControllerBase
+    public class CommentsController : ControllerBase
     {
         private readonly IGenericRepository<Comment> _repository;
 
-        public ComementsController(IGenericRepository<Comment> repository)
+        public CommentsController(IGenericRepository<Comment> repository)
         {
             _repository = repository;
         }
@@ -44,6 +44,12 @@ namespace UdemyCarBook.WebApi.Controllers
         public IActionResult GetComment(int id)
         {
           var values=  _repository.GetById(id);
+            return Ok(values);
+        }
+        [HttpGet("CommentListByBlog")]
+        public IActionResult CommentListByBlog(int id)
+        {
+            var values = _repository.GetCommentsByBlogId(id);
             return Ok(values);
         }
 

@@ -1,0 +1,40 @@
+﻿@model CreateAboutDto
+@{
+	ViewData["Title"] = "CreateAbout";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">Yeni Hakkımızda Bilgisi Girişi</h4>
+				<p class="card-subtitle mb-4">
+					Yeni Hakkımızda Girişini Aşağıda Yapabilirsiniz. Tema bütünlüğünün Bozulmaması Adına 1 Tane Veri Giriniz.
+				</p>
+				<form method="post">
+					<div class="form-group">
+						<label for="exampleInputTitle">Başlık</label>
+						<input type="text" class="form-control" asp-for="Title" id="exampleInputTitle" placeholder="Başlığı Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputDescription">Açıklama</label>
+						<textarea rows="5" class="form-control" asp-for="Description" id="exampleInputDescription" placeholder="Açıklamayı Giriniz"></textarea>
+
+						
+					</div>
+					<div class="form-group">
+						<label for="exampleInputImageUrl">Video Url</label>
+						<input type="text" class="form-control" asp-for="ImageUrl" id="exampleInputImageUrl" placeholder="Hakkımdızda Kapat Fotoğrafı Linki Giriniz">
+					</div>
+					
+					<button type="submit" class="btn btn-primary waves-effect waves-light">Hakkımızda Bilgisini Kaydet</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+

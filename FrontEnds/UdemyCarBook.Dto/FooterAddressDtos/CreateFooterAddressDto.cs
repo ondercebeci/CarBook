@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Dto.FooterAdressDtos
+namespace UdemyCarBook.Dto.FooterAddressDtos
 {
-    public class ResultFooterAdressDto
+    public class CreateFooterAddressDto
     {
-        public int FooterAddressID { get; set; }
         public string Description { get; set; }
         public string Address { get; set; }
         public string Phone { get; set; }
