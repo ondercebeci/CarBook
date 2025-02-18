@@ -1,0 +1,42 @@
+﻿@model UpdateTestimonialDto
+@{
+	ViewData["Title"] = "UpdateTestimonial";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">Yeni Referans Bilgisi Düzenleme Sayfası</h4>
+				<p class="card-subtitle mb-4">
+					Referans Düzenleme işleminin yapıldığı sayfamızdır. Bilgileri eksiksiz olarak doldurup kaydet butonuna tıklayınız.
+				</p>
+				<form method="post">
+					<div class="form-group">
+						<input type="hidden" asp-for="TestimonialID" />
+						<label for="exampleInputName">Referans Adı Soyadı</label>
+						<input type="text" class="form-control" asp-for="Name" id="exampleInputName" placeholder="Referans Adı Soyadını Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputTitle">Referans Ünvanı</label>
+						<input type="text" class="form-control" asp-for="Title" id="exampleInputTitle" placeholder="Referans Ünvanını Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputImageUrl">Referans Görsel</label>
+						<input type="text" class="form-control" asp-for="ImageUrl" id="exampleInputImageUrl" placeholder="Referans Görsel  URL Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputImageUrl">Referans Yorumu</label>
+						<textarea class="form-control" asp-for="Comment" id="exampleInputImageUrl" placeholder="Referans Yorumu Giriniz"></textarea>
+					</div>
+					<button type="submit" class="btn btn-primary waves-effect waves-light">Referans Bilgisini Güncelle</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+

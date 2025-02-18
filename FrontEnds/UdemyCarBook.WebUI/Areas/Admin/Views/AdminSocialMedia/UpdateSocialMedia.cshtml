@@ -1,0 +1,38 @@
+﻿@model UpdateSocialMediaDto
+@{
+	ViewData["Title"] = "UpdateSocialMedia";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-content">
+	<div class="container-fluid">
+		<div class="card">
+			<div class="card-body">
+
+				<h4 class="card-title">Yeni Sosyal Medya Bilgisi Güncelle Sayfası</h4>
+				<p class="card-subtitle mb-4">
+					Kullandığınız sosyal medya hesaplarına ait bilgileri yönetebileceğiniz sayfadır
+				</p>
+				<form method="post">
+					<input type="hidden" asp-for="SocialMediaID" />
+					<div class="form-group">
+						<label for="exampleInputName">Sosyal Medya Adı</label>
+						<input type="text" class="form-control" asp-for="Name" id="exampleInputName" placeholder="Sosyal Medya Adını Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputUrl">Sosyal Medya URL</label>
+						<input type="text" class="form-control" asp-for="Url" id="exampleInputUrl" placeholder="Sosyal Medya URL Linkini Giriniz">
+					</div>
+					<div class="form-group">
+						<label for="exampleInputIconUrl">Sosyal Medya  İkon URL</label>
+						<input type="text" class="form-control" asp-for="Icon" id="exampleInputIconUrl" placeholder="Sosyal Medya İkon URL Giriniz">
+					</div>
+					<button type="submit" class="btn btn-primary waves-effect waves-light">Sosyal Medya Bilgisini Güncelle</button>
+				</form>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+
