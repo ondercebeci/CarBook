@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using UdemyCarBook.Dto.BlogDtos;
+using UdemyCarBook.Dto.CommentDtos;
 
 namespace UdemyCarBook.WebUI.ViewComponents.BlogViewComponents
 {
@@ -23,7 +24,6 @@ namespace UdemyCarBook.WebUI.ViewComponents.BlogViewComponents
                 var values = JsonConvert.DeserializeObject<GetBlogByIdDto>(jsonData);
                 return View(values);
             }
-
             return View();
         }
     }

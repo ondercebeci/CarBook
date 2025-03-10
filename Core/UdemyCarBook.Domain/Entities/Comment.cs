@@ -11,6 +11,7 @@ namespace UdemyCarBook.Domain.Entities
         public int CommentID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string Email { get; set; }
         public DateTime Date { get; set; }
         public int BlogID { get; set; }
         public Blog? Blog { get; set; }

@@ -303,6 +303,10 @@ namespace UdemyCarBook.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -564,11 +568,17 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Property<int?>("PickUpLocationID")
                         .HasColumnType("int");
 
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("ReservationID");
+
+                    b.HasIndex("CarID");
 
                     b.HasIndex("DropOffpLocationID");
 
@@ -808,6 +818,12 @@ namespace UdemyCarBook.Persistence.Migrations
 
             modelBuilder.Entity("UdemyCarBook.Domain.Entities.Reservation", b =>
                 {
+                    b.HasOne("UdemyCarBook.Domain.Entities.Car", "Car")
+                        .WithMany("Reservations")
+                        .HasForeignKey("CarID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("UdemyCarBook.Domain.Entities.Location", "DropOffpLocation")
                         .WithMany("DropOffReservation")
                         .HasForeignKey("DropOffpLocationID");
@@ -815,6 +831,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.HasOne("UdemyCarBook.Domain.Entities.Location", "PickUpLocation")
                         .WithMany("PickUpReservation")
                         .HasForeignKey("PickUpLocationID");
+
+                    b.Navigation("Car");
 
                     b.Navigation("DropOffpLocation");
 
@@ -860,6 +878,8 @@ namespace UdemyCarBook.Persistence.Migrations
                     b.Navigation("RentACarProcesses");
 
                     b.Navigation("RentACars");
+
+                    b.Navigation("Reservations");
                 });
 
             modelBuilder.Entity("UdemyCarBook.Domain.Entities.Category", b =>

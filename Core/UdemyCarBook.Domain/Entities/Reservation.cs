@@ -16,10 +16,12 @@ namespace UdemyCarBook.Domain.Entities
         public int? PickUpLocationID { get; set; }
         public int? DropOffpLocationID { get; set; }
         public int CarID { get; set; }
+        public Car Car { get; set; }
         public int Age { get; set; }
         public int DriverLicenseYear { get; set; }
         public string? Description { get; set; }
         public Location PickUpLocation { get; set; }
         public Location DropOffpLocation { get; set; }
+        public string Status { get; set; }
     }
 }
