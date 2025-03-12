@@ -1,19 +1,18 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
-using UdemyCarBook.Dto.BlogDtos;
 using UdemyCarBook.Dto.CarPricingDtos;
 
-namespace UdemyCarBook.WebUI.Controllers
+namespace UdemyCarBook.WebUI.ViewComponents.DashboardComponents
 {
-    public class CarPricingController : Controller
+    public class _AdminDashboardCarPiricingListComponentPartial: ViewComponent
     {
         private readonly IHttpClientFactory _httpClientFactory;
 
-        public CarPricingController(IHttpClientFactory httpClientFactory)
+        public _AdminDashboardCarPiricingListComponentPartial(IHttpClientFactory httpClientFactory)
         {
             _httpClientFactory = httpClientFactory;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IViewComponentResult> InvokeAsync()
         {
             ViewBag.v1 = "Paketler";
             ViewBag.v2 = "Araç Fiyat Paketleri";
