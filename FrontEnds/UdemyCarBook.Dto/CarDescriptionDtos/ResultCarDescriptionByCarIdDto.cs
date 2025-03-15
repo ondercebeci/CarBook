@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UdemyCarBook.Domain.Entities
+namespace UdemyCarBook.Dto.CarDescriptionDtos
 {
-    public class CarDescription
+    public class ResultCarDescriptionByCarIdDto
     {
         public int CarDescriptionID { get; set; }
-        public string? Details { get; set; }
+        public string Details { get; set; }
         public int CarID { get; set; }
-        public Car Car { get; set; }
     }
 }
