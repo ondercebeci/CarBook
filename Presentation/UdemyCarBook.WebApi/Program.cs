@@ -1,6 +1,9 @@
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using System.Reflection;
+using System.Text;
 using UdemyCarBook.Application.Features.CQRS.Handlers.AboutHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BannerHandlers;
 using UdemyCarBook.Application.Features.CQRS.Handlers.BrandHandlers;
@@ -19,6 +22,7 @@ using UdemyCarBook.Application.Interfaces.ReviewInterfaces;
 using UdemyCarBook.Application.Interfaces.StatisticsInterfaces;
 using UdemyCarBook.Application.Interfaces.TagCloudInterfaces;
 using UdemyCarBook.Application.Services;
+using UdemyCarBook.Application.Tools;
 using UdemyCarBook.Application.Validator.ReviewValidator;
 using UdemyCarBook.Persistence.Context;
 using UdemyCarBook.Persistence.Repositories;
@@ -32,8 +36,39 @@ using UdemyCarBook.Persistence.Repositories.RentACarRepositories;
 using UdemyCarBook.Persistence.Repositories.ReviewRepositories;
 using UdemyCarBook.Persistence.Repositories.StatisticsRepositories;
 using UdemyCarBook.Persistence.Repositories.TagCloudRepositories;
+using UdemyCarBook.WebApi.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddHttpClient();
+
+builder.Services.AddCors(opt =>
+{
+    opt.AddPolicy("CorsPolicy", builder =>
+    {
+        builder.AllowAnyHeader()
+        .AllowAnyMethod()
+        .SetIsOriginAllowed((host) => true)
+        .AllowCredentials();
+    });
+});
+builder.Services.AddSignalR();
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(opt =>
+{
+    opt.RequireHttpsMetadata = false;
+    opt.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidAudience = JwtTokenDefaults.ValidAudience,
+        ValidIssuer = JwtTokenDefaults.ValidIssuer,
+        ClockSkew = TimeSpan.Zero,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(JwtTokenDefaults.Key)),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true,
+        
+    };
+});
+
+#region Registirations  
 
 // Add services to the container.
 
@@ -89,6 +124,8 @@ builder.Services.AddScoped<RemoveContactCommandHandler>();
 builder.Services.AddScoped<UpdateContactCommandHandler>();
 builder.Services.AddScoped<CreateContactCommandHandler>();
 
+#endregion
+
 builder.Services.AddApplicationService(builder.Configuration);
 
 builder.Services.AddControllers().AddFluentValidation(v =>
@@ -110,11 +147,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
+app.UseAuthentication();
 
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.MapHub<CarHub>("/carhub");
 app.Run();
